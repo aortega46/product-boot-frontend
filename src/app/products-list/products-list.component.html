@@ -1,0 +1,7 @@
+<main class="mx-auto w-full">
+  <section class="flex flex-col">
+    @for (product of productsList$ | async; track $index) {
+      <app-product-item [product]="product" />
+    }
+  </section>
+</main>

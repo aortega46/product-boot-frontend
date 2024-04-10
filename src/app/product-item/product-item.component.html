@@ -1,0 +1,26 @@
+<article class="flex h-40 gap-4 px-4 py-2">
+  <img
+    class="size-32 rounded-full object-cover"
+    [src]="product.thumbnail"
+    [alt]="product.name" />
+
+  <div class="flex flex-col justify-around">
+    <h3 class="text-xl font-bold">
+      {{ product.name }}
+    </h3>
+    <p class="line-clamp-3 text-sm">
+      {{ product.description }} Mollit officia laborum ex consectetur
+      exercitation sunt.Mollit officia laborum ex consectetur exercitation
+      sunt.Mollit officia laborum ex consectetur exercitation sunt.
+    </p>
+    <div class="flex items-center justify-between">
+      <h4 class="text-lg font-bold">
+        {{ product.price | currency: 'EUR' : true }}
+      </h4>
+      <button
+        class="rounded-full border-b-2 border-blue-600 bg-pink-300 px-5 py-1 hover:bg-pink-200 active:bg-yellow-100">
+        Añadir
+      </button>
+    </div>
+  </div>
+</article>
