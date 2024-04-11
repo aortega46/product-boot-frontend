@@ -1,17 +1,19 @@
 <article class="flex h-40 gap-4 px-4 py-2">
-  <img
-    class="size-32 rounded-full object-cover"
-    [src]="product.thumbnail"
-    [alt]="product.name" />
+  <a [routerLink]="product.id.toString()">
+    <img
+      class="size-32 min-w-32 rounded-full object-cover"
+      [src]="product.thumbnail"
+      [alt]="product.name" />
+  </a>
 
   <div class="flex flex-col justify-around">
     <h3 class="text-xl font-bold">
-      {{ product.name }}
+      <a [routerLink]="product.id.toString()">
+        {{ product.name }}
+      </a>
     </h3>
     <p class="line-clamp-3 text-sm">
-      {{ product.description }} Mollit officia laborum ex consectetur
-      exercitation sunt.Mollit officia laborum ex consectetur exercitation
-      sunt.Mollit officia laborum ex consectetur exercitation sunt.
+      {{ product.description }}
     </p>
     <div class="flex items-center justify-between">
       <h4 class="text-lg font-bold">
