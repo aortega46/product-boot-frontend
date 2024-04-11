@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, RouterLink } from '@angular/router'
 import { Product } from '../interfaces/product'
 import { ProductsService } from '../services/products.service'
 import { CurrencyPipe } from '@angular/common'
@@ -7,7 +7,7 @@ import { CurrencyPipe } from '@angular/common'
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './product-detail.component.html',
   styles: `
     :host {
