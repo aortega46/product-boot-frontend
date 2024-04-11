@@ -1,0 +1,67 @@
+<section class="flex h-full flex-col items-center justify-between p-4">
+  @if (product) {
+    <div>
+      <div class="mb-6 flex justify-around">
+        <img
+          class="size-64 rounded-full object-cover"
+          [src]="product.thumbnail"
+          [alt]="product.name"
+          (click)="openImage(product.thumbnail)" />
+        <div class="flex flex-col gap-2">
+          @for (image of product.images; track $index) {
+            <img
+              class="size-20 rounded-full object-cover"
+              [src]="image.url"
+              [alt]="product.name"
+              (click)="openImage(image.url)" />
+          }
+        </div>
+      </div>
+      <h1 class="text-center text-2xl font-bold">{{ product.name }}</h1>
+      <h2 class="text-center text-xl font-bold">
+        {{ product.price | currency: 'EUR' }}
+      </h2>
+
+      <p class="mt-6">{{ product.description }}</p>
+    </div>
+
+    <button
+      class="rounded-full border-b-4 border-b-blue-600 bg-pink-300 px-12 py-2 text-4xl">
+      Comprar
+    </button>
+  } @else {}
+</section>
+
+@if (selectedImage) {
+  <div
+    class="absolute left-0 top-0 z-50 h-full max-h-full w-full overflow-y-auto overflow-x-hidden bg-gray-700/40 md:inset-0">
+    <div class="flex h-full items-center justify-center" (click)="closeImage()">
+      <div class="relative max-h-full w-full max-w-md p-4">
+        <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+          <button
+            type="button"
+            class="absolute end-2.5 top-3 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg
+              class="h-3 w-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14">
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+
+          <div class="p-4 text-center md:p-5">
+            <img [src]="selectedImage" [alt]="product?.name" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
