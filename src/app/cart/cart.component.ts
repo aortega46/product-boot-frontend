@@ -7,5 +7,12 @@ import { Component } from '@angular/core'
   templateUrl: './cart.component.html',
 })
 export class CartComponent {
-  toggleCart() {}
+  isCartOpened: boolean = false
+
+  toggleCart() {
+    this.isCartOpened = !this.isCartOpened
+  }
+
+  // TODO: clearCart
+  clearCart() {}
 }

@@ -3,3 +3,24 @@
   (click)="toggleCart()">
   <i class="bi bi-bag text-2xl"></i>
 </button>
+
+<aside
+  class="fixed right-0 top-0 flex h-full w-72 flex-col items-center overflow-y-auto bg-black/90 p-8 transition {{
+    isCartOpened ? 'translate-x-0' : 'translate-x-full'
+  }}">
+  <div class="flex w-full justify-end">
+    <button (click)="toggleCart()">
+      <i class="bi bi-x text-2xl text-white"></i>
+    </button>
+  </div>
+
+  <ul class="mb-2 mt-4 border-b-2 border-b-slate-800">
+    <!-- TODO: show products in cart -->
+  </ul>
+
+  <button
+    class="flex rounded border-b-2 border-b-blue-700 bg-pink-300 px-4 py-2"
+    (click)="clearCart()">
+    <i class="bi bi-bag-x text-2xl"></i>
+  </button>
+</aside>
