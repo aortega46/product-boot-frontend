@@ -15,7 +15,11 @@
   </div>
 
   <ul class="mb-2 mt-4 border-b-2 border-b-slate-800">
-    <!-- TODO: show products in cart -->
+    @for (product of cartService.cart | async; track product.id) {
+      <ng-container
+        *ngTemplateOutlet="cartItem; context: { $implicit: product }">
+      </ng-container>
+    }
   </ul>
 
   <button
@@ -24,3 +28,27 @@
     <i class="bi bi-bag-x text-2xl"></i>
   </button>
 </aside>
+
+<!-- CART ITEM -->
+<ng-template #cartItem let-product>
+  <li class="mb-4 flex flex-col gap-2 rounded text-white">
+    <img class="rounded" [src]="product.thumbnail" [alt]="product.name" />
+    <div>
+      <strong>{{ product.name }}</strong> -
+      {{ product.price | currency: 'EUR' }}
+    </div>
+    <footer class="flex justify-around text-black">
+      <button
+        class="rounded border-b-2 border-b-blue-700 bg-pink-300 px-3 hover:outline hover:outline-1 hover:outline-blue-700"
+        (click)="cartService.removeOneFromCart(product)">
+        <i class="bi bi-dash"></i>
+      </button>
+      <span class="text-white">{{ product.quantity }}</span>
+      <button
+        class="rounded border-b-2 border-b-blue-700 bg-pink-300 px-3 hover:outline hover:outline-1 hover:outline-blue-700"
+        (click)="cartService.addToCart(product)">
+        <i class="bi bi-plus"></i>
+      </button>
+    </footer>
+  </li>
+</ng-template>
