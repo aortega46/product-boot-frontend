@@ -23,11 +23,45 @@ export class CartService {
     )
 
     if (productInCartIndex >= 0) {
+      const currentProduct = currentCart[productInCartIndex]
+
       const newCart = [
         ...currentCart.slice(0, productInCartIndex),
         {
-          ...currentCart[productInCartIndex],
-          quantity: currentCart[productInCartIndex].quantity + 1,
+          ...currentProduct,
+          quantity: currentProduct.quantity + 1,
+        },
+        ...currentCart.slice(productInCartIndex + 1),
+      ]
+
+      this.updateLocalStorage(newCart)
+      return this.cart.next(newCart)
+    }
+
+    const newCart = [...currentCart, { ...product, quantity: 1 }]
+    this.updateLocalStorage(newCart)
+    return this.cart.next(newCart)
+  }
+
+  removeOneFromCart(product: Product) {
+    const currentCart = this.cart.getValue()
+    const productInCartIndex = currentCart.findIndex(
+      item => item.id === product.id
+    )
+
+    if (productInCartIndex >= 0) {
+      const currentProduct = currentCart[productInCartIndex]
+
+      if (currentProduct.quantity <= 1) {
+        this.removeFromCart({ id: currentProduct.id })
+        return
+      }
+
+      const newCart = [
+        ...currentCart.slice(0, productInCartIndex),
+        {
+          ...currentProduct,
+          quantity: currentProduct.quantity - 1,
         },
         ...currentCart.slice(productInCartIndex + 1),
       ]
