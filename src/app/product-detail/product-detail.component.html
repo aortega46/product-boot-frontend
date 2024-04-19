@@ -32,11 +32,22 @@
       <p class="mt-6">{{ product.description }}</p>
     </div>
 
-    <button
-      class="rounded-full border-b-4 border-b-blue-600 bg-pink-300 px-12 py-2 text-4xl">
-      Comprar
-    </button>
-  } @else {}
+    @if (cartService.checkProductInCart(product.id) | async) {
+      <button
+        class="rounded-full border-b-4 border-b-blue-600 bg-pink-300 px-12 py-2 text-4xl"
+        (click)="cartService.removeFromCart({ id: product.id })">
+        Quitar
+      </button>
+    } @else {
+      <button
+        class="rounded-full border-b-4 border-b-blue-600 bg-pink-300 px-12 py-2 text-4xl"
+        (click)="cartService.addToCart(product)">
+        Añadir
+      </button>
+    }
+  } @else {
+    <!-- TODO: no product -->
+  }
 </section>
 
 @if (selectedImage) {
