@@ -14,6 +14,11 @@
     </button>
   </div>
 
+  <div class="w-full text-white">
+    <strong class="text-2xl">Total: </strong
+    ><span>{{ cartService.getTotalFromCart() | async | currency: 'EUR' }}</span>
+  </div>
+
   <ul class="mb-2 mt-4 border-b-2 border-b-slate-800">
     @for (product of cartService.cart | async; track product.id) {
       <ng-container

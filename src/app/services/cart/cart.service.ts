@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, switchMap, of } from 'rxjs'
+import { BehaviorSubject, Observable, switchMap, of, map } from 'rxjs'
 import { Product } from '../../interfaces/product'
 import { CartProduct } from '../../interfaces/cart-product'
 
@@ -95,5 +95,13 @@ export class CartService {
 
   updateLocalStorage(cart: CartProduct[]) {
     localStorage.setItem('cart', JSON.stringify(cart))
+  }
+
+  getTotalFromCart(): Observable<number> {
+    return this.cart.pipe(
+      switchMap(cart =>
+        of(cart.reduce((a, b) => (a += b.quantity * b.price), 0))
+      )
+    )
   }
 }
