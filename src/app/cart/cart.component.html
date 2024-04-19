@@ -1,7 +1,13 @@
 <button
-  class="size-12 rounded border-b-2 border-blue-700 bg-pink-300"
+  class="relative size-12 rounded border-b-2 border-blue-700 bg-pink-300"
   (click)="toggleCart()">
   <i class="bi bi-bag text-2xl"></i>
+  @if (cartService.getNumberOfProductFromCart() | async; as num) {
+    <span
+      class="absolute bottom-1 right-2 size-1/2 rounded-full bg-blue-700/80 p-0.5 text-sm text-white"
+      >{{ num }}</span
+    >
+  }
 </button>
 
 <aside

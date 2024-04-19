@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core'
+import { Component, OnInit, inject } from '@angular/core'
 import { CartService } from '../services/cart/cart.service'
 import { AsyncPipe, CurrencyPipe, NgTemplateOutlet } from '@angular/common'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-cart',

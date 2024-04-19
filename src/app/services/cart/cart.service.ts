@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, switchMap, of, map } from 'rxjs'
+import { BehaviorSubject, Observable, switchMap, of } from 'rxjs'
 import { Product } from '../../interfaces/product'
 import { CartProduct } from '../../interfaces/cart-product'
 
@@ -103,5 +103,9 @@ export class CartService {
         of(cart.reduce((a, b) => (a += b.quantity * b.price), 0))
       )
     )
+  }
+
+  getNumberOfProductFromCart(): Observable<number> {
+    return this.cart.pipe(switchMap(cart => of(cart.length)))
   }
 }
