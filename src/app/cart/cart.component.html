@@ -1,5 +1,5 @@
 <button
-  class="relative size-12 rounded border-b-2 border-blue-700 bg-pink-300"
+  class="relative size-12 rounded border-b-2 border-blue-700 bg-pink-300 hover:bg-pink-200 active:bg-yellow-100"
   (click)="toggleCart()">
   <i class="bi bi-bag text-2xl"></i>
   @if (cartService.getNumberOfProductFromCart() | async; as num) {
@@ -34,7 +34,7 @@
   </ul>
 
   <button
-    class="flex rounded border-b-2 border-b-blue-700 bg-pink-300 px-4 py-2"
+    class="flex rounded border-b-2 border-b-blue-700 bg-pink-300 px-4 py-2 hover:bg-pink-200 active:bg-yellow-100"
     (click)="clearCart()">
     <i class="bi bi-bag-x text-2xl"></i>
   </button>
@@ -50,13 +50,13 @@
     </div>
     <footer class="flex justify-around text-black">
       <button
-        class="rounded border-b-2 border-b-blue-700 bg-pink-300 px-3 hover:outline hover:outline-1 hover:outline-blue-700"
+        class="rounded border-b-2 border-b-blue-700 bg-pink-300 px-3 hover:bg-pink-200 active:bg-yellow-100"
         (click)="cartService.removeOneFromCart(product)">
         <i class="bi bi-dash"></i>
       </button>
       <span class="text-white">{{ product.quantity }}</span>
       <button
-        class="rounded border-b-2 border-b-blue-700 bg-pink-300 px-3 hover:outline hover:outline-1 hover:outline-blue-700"
+        class="rounded border-b-2 border-b-blue-700 bg-pink-300 px-3 hover:bg-pink-200 active:bg-yellow-100"
         (click)="cartService.addToCart(product)">
         <i class="bi bi-plus"></i>
       </button>

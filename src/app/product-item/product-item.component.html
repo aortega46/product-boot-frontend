@@ -21,13 +21,13 @@
       </h4>
       @if (cartService.checkProductInCart(product.id) | async) {
         <button
-          class="rounded-full border-b-2 border-blue-600 bg-pink-300 px-5 py-1 hover:bg-pink-200 active:bg-yellow-100"
+          class="w-2/6 min-w-fit rounded-full border-b-2 border-pink-600 bg-blue-300 px-5 py-1 hover:bg-pink-200 active:bg-yellow-100"
           (click)="cartService.removeFromCart({ id: product.id })">
           Quitar
         </button>
       } @else {
         <button
-          class="rounded-full border-b-2 border-blue-600 bg-pink-300 px-5 py-1 hover:bg-pink-200 active:bg-yellow-100"
+          class="w-2/6 min-w-fit rounded-full border-b-2 border-blue-600 bg-pink-300 px-5 py-1 hover:bg-pink-200 active:bg-yellow-100"
           (click)="cartService.addToCart(product)">
           Añadir
         </button>
