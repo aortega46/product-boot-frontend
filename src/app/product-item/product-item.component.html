@@ -1,7 +1,7 @@
-<article class="flex h-40 gap-4 px-4 py-2">
+<article class="flex h-32 items-center gap-4 px-4">
   <a [routerLink]="product.id.toString()">
     <img
-      class="size-32 min-w-32 rounded-full object-cover"
+      class="size-24 min-w-24 rounded-full object-cover sm:size-32 sm:min-w-32"
       [src]="product.thumbnail"
       [alt]="product.name" />
   </a>
