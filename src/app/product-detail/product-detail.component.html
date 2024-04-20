@@ -1,4 +1,5 @@
-<section class="flex h-full flex-col items-center justify-between px-4 pb-4">
+<section
+  class="container mx-auto flex h-full flex-col items-center justify-between px-4 pb-4">
   @if (product) {
     <div>
       <a class="mb-6 flex items-center" routerLink="/">
@@ -8,16 +9,16 @@
         Back home
       </a>
 
-      <div class="mb-6 flex justify-around">
+      <div class="mb-6 flex justify-center gap-4 sm:gap-8">
         <img
-          class="size-64 rounded-full object-cover"
+          class="size-52 rounded-full object-cover sm:size-80"
           [src]="product.thumbnail"
           [alt]="product.name"
           (click)="openImage(product.thumbnail)" />
         <div class="flex flex-col gap-2">
           @for (image of product.images; track $index) {
             <img
-              class="size-20 rounded-full object-cover"
+              class="size-16 rounded-full object-cover sm:size-24"
               [src]="image.url"
               [alt]="product.name"
               (click)="openImage(image.url)" />
@@ -29,7 +30,7 @@
         {{ product.price | currency: 'EUR' }}
       </h2>
 
-      <p class="mt-6">{{ product.description }}</p>
+      <p class="mt-6 md:mx-auto md:w-2/3">{{ product.description }}</p>
     </div>
 
     @if (cartService.checkProductInCart(product.id) | async) {

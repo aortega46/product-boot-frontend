@@ -1,5 +1,5 @@
-<main class="mx-auto w-full">
-  <section class="flex flex-col">
+<main class="container mx-auto">
+  <section class="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3">
     @for (product of productsList$ | async; track $index) {
       <app-product-item [product]="product" />
     }
