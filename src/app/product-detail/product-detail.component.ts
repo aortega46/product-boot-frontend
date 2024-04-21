@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core'
+import { Component, OnDestroy, OnInit, inject } from '@angular/core'
 import { ActivatedRoute, RouterLink } from '@angular/router'
 import { Product } from '../interfaces/product'
 import { ProductsService } from '../services/products/products.service'
 import { AsyncPipe, CurrencyPipe } from '@angular/common'
 import { CartService } from '../services/cart/cart.service'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-product-detail',
@@ -16,7 +17,7 @@ import { CartService } from '../services/cart/cart.service'
     }
   `,
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute)
   private productsService = inject(ProductsService)
   cartService = inject(CartService)
@@ -25,13 +26,21 @@ export class ProductDetailComponent implements OnInit {
 
   selectedImage: string | null = null
 
-  ngOnInit(): void {
-    let prodId = this.route.snapshot.paramMap.get('id')
+  paramsSubscription?: Subscription
 
-    if (prodId)
-      this.productsService
-        .getProductById(prodId)
-        .subscribe(product => (this.product = product))
+  ngOnInit(): void {
+    this.paramsSubscription = this.route.paramMap.subscribe(params => {
+      let id = params.get('id')
+      if (id) {
+        this.productsService
+          .getProductById(id)
+          .subscribe(product => (this.product = product))
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.paramsSubscription?.unsubscribe()
   }
 
   openImage(image: string) {
