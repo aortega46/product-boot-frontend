@@ -1,17 +1,11 @@
 <header class="container mx-auto flex items-center justify-between p-4">
   <img
-    class="size-14"
+    class="size-14 cursor-pointer"
     src="assets/shop.png"
     alt="Bazar Online"
     routerLink="/" />
 
-  <div class="flex gap-2 rounded bg-gray-100 p-2">
-    <input
-      class="h-full w-full bg-gray-100 outline-none"
-      placeholder="laptops, smartphones..."
-      type="text" />
-    <i class="bi bi-search text-gray-500"></i>
-  </div>
+  <app-search-bar />
 
   <app-cart />
 </header>
