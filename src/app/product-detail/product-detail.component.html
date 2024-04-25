@@ -15,12 +15,12 @@
           [alt]="product.name"
           (click)="openImage(product.thumbnail)" />
         <div class="flex flex-col gap-2">
-          @for (image of product.images; track $index) {
+          @for (imageUrl of product.images; track $index) {
             <img
               class="size-16 rounded-full object-cover sm:size-24"
-              [src]="image.url"
+              [src]="imageUrl"
               [alt]="product.name"
-              (click)="openImage(image.url)" />
+              (click)="openImage(imageUrl)" />
           }
         </div>
       </div>
